@@ -1,9 +1,9 @@
 <?php
     $query = new mysqli (
-        "localhost",
-        "root",
-        "",
-        "Pessoa"
+        "mysql-42162-0.cloudclusters.net:18933",
+        "admin",
+        "c7xiLtnJ",
+        "tabela_imagens"
     );
 
     if ($_SERVER["REQUEST_METHOD"] == 'POST'){
