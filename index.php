@@ -1,14 +1,11 @@
-<html>
-<head>
-		<title>Upload de imagens com PHP</title>
-		<meta charset="utf-8"/>
-</head>
-<body>
-	<form action="gravar.php" method="POST" enctype="multipart/form-data">
-		<label for="imagem">Imagem:</label>
-		<input type="file" name="imagem"/>
-		<br/>
-		<input type="submit" value="Enviar"/>
-	</form>
-</body>
-</html>
+<?php
+    include ("conecao.php");
+
+    if ($_SERVER["REQUEST_METHOD"] == "GET"){
+        $nome = $_GET["nome"];
+        $id = $_GET["id"];
+        $query = "insert into pessoa values ($id, '$nome')";
+        inserir_dados($query);
+    }
+
+?>
