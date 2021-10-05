@@ -1,3 +1,1 @@
-<?php include_once("index.html") 
-  echo "OLA MUNDO";
-?>
+<?php include_once("index.html")?>
