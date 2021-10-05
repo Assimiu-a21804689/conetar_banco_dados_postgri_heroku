@@ -8,6 +8,15 @@
     try {
         $conecao =
             new PDO("pgsql:host=$host;port=5432;dbname=$data_base", $usernma,$passwoed, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        
+        if ($_SERVER["REQUEST_METHOD"] == "GET"){
+            $nome = $_GET["nome"];
+            $id = $_GET["id"];
+            $query = "insert into pessoa values ($id, '$nome')";
+            $conecao->query($query);
+            echo "Dados inserido com sucesso";
+        }
+        
     }catch (PDOException $e){
         echo $e->getMessage();
     }
