@@ -1,4 +1,5 @@
 <?php
+    include_once("index.html"
     include ("conecao.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "GET"){
