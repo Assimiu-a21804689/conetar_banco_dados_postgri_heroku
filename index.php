@@ -10,14 +10,32 @@
             new PDO("pgsql:host=$host;port=5432;dbname=$data_base", $usernma,$passwoed, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
-            $nome = $_GET["nome"];
-            $id = $_GET["id"];
-            $query = "insert into pessoa values ($id, '$nome')";
-            $conecao->query($query);
-            echo "Dados inserido com sucesso";
+            $pedido = $_GET["pedido"];
+
+            if ($pedido == "inserir"){
+                $nome = $_GET["nome"];
+                $id = $_GET["id"];
+                $query = "insert into pessoa values ($id, '$nome')";
+                $conecao->query($query);
+                echo "Dados inserido com sucesso";
+            }
+
+            if ($pedido == "consultar"){
+                $id = $_GET["id"];
+                $query = "select *from pessoa where id=".$id;
+                $retorno = $conecao->query($query);
+                $consultor = $retorno->fetchAll();
+
+                for ($linha = 0; $linha < $retorno->rowCount(); $linha ++){
+                    echo ($consultor[$linha][0])."<br>";
+                    echo ($consultor[$linha][1])."<br>";
+                }
+            }
+            
         }
         
     }catch (PDOException $e){
         echo $e->getMessage();
     }
+
 ?>
