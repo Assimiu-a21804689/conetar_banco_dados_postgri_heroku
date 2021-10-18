@@ -8,32 +8,12 @@
         $conecao =
             new PDO("pgsql:host=$host;port=5432;dbname=$data_base", $usernma,$passwoed, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         
-       if ($_SERVER["POST"]){
-           $imagData = $_POST["path"];
-           $query = "select id from photo order by asc";
-
-           $result = $conecao->query($query);
-           
-           $default = "";
-           while ($row = $result->fetch_array()){
-               $default = $row['id'];
-           }
-
-           $imaPath = "updata/$default.jpng";
-           $server_url = "ec2-52-1-20-236.compute-1.amazonaws.com/camera/$imaPath";
-
-           $queryInser = "Insert into photo (path) values ('$server_url')";
-
-           $resultInserir = $conecao->query($queryInser);
-
-           if ($resultInserir === TRUE){
-               file_put_contents($imaPath, base64_decode($imagData));
-           }
-
-
-    
- 
-       }
+            if ($_SERVER["POST"]) {
+                $image = $_POST["image"];
+                $past = "updata/nome.jpg";
+                file_put_contents($past, base64_decode($image));
+                echo json_encode('response'=>'Image Sucesso');
+            }
         
     }catch (PDOException $e){
         echo $e->getMessage();
