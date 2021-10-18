@@ -10,7 +10,7 @@
         
             if ($_SERVER["POST"]) {
                 $image = $_POST["image"];
-                $past = "updata/nome.jpg";
+                $past = "update/nome.jpg";
                 file_put_contents($past, base64_decode($image));
                 echo json_encode('response'=>'Image Sucesso');
             }
