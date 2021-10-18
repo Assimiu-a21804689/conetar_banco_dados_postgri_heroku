@@ -33,7 +33,7 @@
             if ($pedido == "inserirImagem"){
                 $imag = $_GET["imagem"];
                 
-                $query = "insert into img values('$imag')";
+                $query = "insert into id_imagem values('$imag')";
                 
                 $conecao->query($query);
                 
