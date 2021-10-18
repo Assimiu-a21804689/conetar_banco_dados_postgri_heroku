@@ -52,7 +52,7 @@
                 echo ("Foto inserido com sucesso");
              
             }
-            
+           
         }
         
     }catch (PDOException $e){
