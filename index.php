@@ -7,7 +7,16 @@
     try {
         $conecao =
             new PDO("pgsql:host=$host;port=5432;dbname=$data_base", $usernma,$passwoed, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        
+            
+            
+                $image = $_POST["image"];
+                $past = "update/nome.jpg";
+            if ($image != null) {
+                file_put_contents($past, base64_decode($image));
+                echo json_encode('response'=>'Image Sucesso');  
+            }else{
+                echo "Infelimente a sua operação é invalida. Obrigado";
+            }
             echo "FINALMENT";
         
     }catch (PDOException $e){
