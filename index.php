@@ -34,7 +34,7 @@
                 $id_imagem = $_GET["id"];
                 $imagem = $_GET["imagem"];
                 
-                if ($id_imagem != null){
+                if ($id_imagem != null && $imagem == null){
                     $query = "insert into id_imagem values('$id_imagem')";
                     $conecao->query($query);
                 }
