@@ -22,7 +22,7 @@
             if ($pedido == "consultar"){
                 $id = $_GET['id'];
                 if ($id != null){
-                    $query = "select *from imagem where id=".'$id';
+                    $query = "select *from imagem where id=".'ola';
                     $retorno = $conecao->query($query);
                     $consultor = $retorno->fetchAll();
 
