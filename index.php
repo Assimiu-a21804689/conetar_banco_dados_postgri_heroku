@@ -8,52 +8,32 @@
         $conecao =
             new PDO("pgsql:host=$host;port=5432;dbname=$data_base", $usernma,$passwoed, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         
-        if ($_SERVER["REQUEST_METHOD"] == "GET"){
-            $pedido = $_GET["pedido"];
+       if ($_SERVER["POST"]){
+           $imagData = $_POST["path"];
+           $query = "select id from photo order by asc";
 
-            if ($pedido == "inserir"){
-                $nome = $_GET["nome"];
-                $id = $_GET["id"];
-                $query = "insert into pessoa values ($id, '$nome')";
-                $conecao->query($query);
-                echo "Dados inserido com sucesso";
-            }
-
-            if ($pedido == "consultar"){
-                $id = $_GET['id'];
-                if ($id != null){
-                    $query = "select *from imagem where id=".$id;
-                    $retorno = $conecao->query($query);
-                    $consultor = $retorno->fetchAll();
-
-                    for ($linha = 0; $linha < $retorno->rowCount(); $linha ++){
-                        echo ($consultor[$linha][0]);
-                    }
-                }
-                
-            }
-            
-            if ($pedido == "inserirImagem"){
-                $id_imagem = $_GET["id"];
-                $imagem = $_GET["imagem"];
-                
-                if ($id_imagem != null && $imagem == null){
-                    $query = "insert into id_imagem values('$id_imagem')";
-                    $conecao->query($query);
-                }
-                
-                if ($imagem != null){
-                    $query = "insert into imagem values( '$imagem','$id_imagem')";
-                    $conecao->query($query);
-                }
-                
-              
-                
-                echo ("Foto inserido com sucesso");
-             
-            }
+           $result = $conecao->query($query);
            
-        }
+           $default = "";
+           while ($row = $result->fetch_array()){
+               $default = $row['id'];
+           }
+
+           $imaPath = "updata/$default.jpng";
+           $server_url = "ec2-52-1-20-236.compute-1.amazonaws.com/camera/$imaPath";
+
+           $queryInser = "Insert into photo (path) values ('$server_url')";
+
+           $resultInserir = $conecao->query($queryInser);
+
+           if ($resultInserir === TRUE){
+               file_put_contents($imaPath, base64_decode($imagData));
+           }
+
+
+    
+ 
+       }
         
     }catch (PDOException $e){
         echo $e->getMessage();
