@@ -31,11 +31,18 @@
             }
             
             if ($pedido == "inserirImagem"){
-                $imag = $_GET["imagem"];
+                $id_imagem = $_GET["id"];
+                $imagem = $_GET["imagem"];
                 
-                $query = "insert into id_imagem values('$imag')";
+                if ($id_imagem != null){
+                    $query = "insert into id_imagem values('$id_imagem')";
+                    $conecao->query($query);
+                }
                 
+                $query = "insert into id_imagem values('$imagem')";
                 $conecao->query($query);
+                
+              
                 
                 echo ("Foto inserido com sucesso");
              
