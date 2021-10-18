@@ -21,13 +21,16 @@
 
             if ($pedido == "consultar"){
                 $id = $_GET["id"];
-                $query = "select *from pessoa where id=".$id;
-                $retorno = $conecao->query($query);
-                $consultor = $retorno->fetchAll();
-                
-                for ($linha = 0; $linha < $retorno->rowCount(); $linha ++){
-                    echo ($consultor[$linha][0])."%-%".($consultor[$linha][1]).">-<";
+                if ($id != null){
+                    $query = "select *from imagem where id=".$id;
+                    $retorno = $conecao->query($query);
+                    $consultor = $retorno->fetchAll();
+
+                    for ($linha = 0; $linha < $retorno->rowCount(); $linha ++){
+                        echo ($consultor[$linha][1]);
+                    }
                 }
+                
             }
             
             if ($pedido == "inserirImagem"){
