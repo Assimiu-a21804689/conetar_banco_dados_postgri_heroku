@@ -40,7 +40,7 @@
                 }
                 
                 if ($imagem != null){
-                    $query = "insert into id_imagem values('$imagem')";
+                    $query = "insert into id_imagem values($id_imagem, '$imagem')";
                     $conecao->query($query);
                 }
                 
