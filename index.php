@@ -8,12 +8,7 @@
         $conecao =
             new PDO("pgsql:host=$host;port=5432;dbname=$data_base", $usernma,$passwoed, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         
-            if ($_SERVER["POST"]) {
-                $image = $_POST["image"];
-                $past = "update/nome.jpg";
-                file_put_contents($past, base64_decode($image));
-                echo json_encode('response'=>'Image Sucesso');
-            }
+            echo "FINALMENT";
         
     }catch (PDOException $e){
         echo $e->getMessage();
