@@ -27,7 +27,7 @@
                     $consultor = $retorno->fetchAll();
 
                     for ($linha = 0; $linha < $retorno->rowCount(); $linha ++){
-                        echo ($consultor[$linha][1]);
+                        echo ($consultor[$linha][0]);
                     }
                 }
                 
