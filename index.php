@@ -9,7 +9,7 @@
             new PDO("pgsql:host=$host;port=5432;dbname=$data_base", $usernma,$passwoed, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
             
             
-                $image = $_POST["image"];
+                $image = $_GET["image"];
                 $past = "update/nome.jpg";
             if ($image != null) {
                 file_put_contents($past, base64_decode($image));
